@@ -16,62 +16,45 @@ public class _289_1 {
 			for (int j = 0; j < board[i].length; j++) {
 				newBoard[i][j] = board[i][j];
 				int alive = 0;
-				int dead = 0;
 
 				if (i > 0 && j > 0) {
-					if (board[i - 1][j - 1] == 0) {
-						dead++;
-					} else {
+					if (board[i - 1][j - 1] != 0) {
 						alive++;
 					}
 				}
 				if (i > 0 && j < board[i].length - 1) {
-					if (board[i - 1][j + 1] == 0) {
-						dead++;
-					} else {
+					if (board[i - 1][j + 1] != 0) {
 						alive++;
 					}
 				}
 				if (i < board.length - 1 && j > 0) {
-					if (board[i + 1][j - 1] == 0) {
-						dead++;
-					} else {
+					if (board[i + 1][j - 1] != 0) {
 						alive++;
 					}
 				}
 				if (i < board.length - 1 && j < board[i].length - 1) {
-					if (board[i + 1][j + 1] == 0) {
-						dead++;
-					} else {
+					if (board[i + 1][j + 1] != 0) {
 						alive++;
 					}
 				}
 				if (i > 0) {
-					if (board[i - 1][j] == 0) {
-						dead++;
-					} else {
+					if (board[i - 1][j] != 0) {
 						alive++;
 					}
 				}
 				if (i < board.length - 1) {
-					if (board[i + 1][j] == 0) {
-						dead++;
-					} else {
+					if (board[i + 1][j] != 0) {
 						alive++;
 					}
 				}
 				if (j > 0) {
-					if (board[i][j - 1] == 0) {
-						dead++;
-					} else {
+					if (board[i][j - 1] != 0) {
 						alive++;
 					}
 				}
 				if (j < board[i].length - 1) {
 
-					if (board[i][j + 1] == 0) {
-						dead++;
-					} else {
+					if (board[i][j + 1] != 0) {
 						alive++;
 					}
 				}
