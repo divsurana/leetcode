@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.leetcode.concurrency.easy.solutions;
+package org.leetcode.concurrency.medium.solutions;
 
 import java.util.concurrent.Semaphore;
 
