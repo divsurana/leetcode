@@ -6,7 +6,7 @@ package org.leetcode.tree.medium.solutions;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import org.leetcode.bst.medium.solutions.TreeNode;
+import org.leetcode.common.TreeNode;
 
 /**
  * @author divyesh_surana

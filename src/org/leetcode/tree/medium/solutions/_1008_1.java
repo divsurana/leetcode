@@ -5,7 +5,7 @@ package org.leetcode.tree.medium.solutions;
 
 import java.util.Arrays;
 
-import org.leetcode.bst.medium.solutions.TreeNode;
+import org.leetcode.common.TreeNode;
 
 /**
  * @author divyesh_surana

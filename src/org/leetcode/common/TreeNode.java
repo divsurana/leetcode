@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.leetcode.bst.medium.solutions;
+package org.leetcode.common;
 
 /**
  * Definition for a binary tree node.

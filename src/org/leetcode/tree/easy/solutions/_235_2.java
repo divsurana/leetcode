@@ -3,7 +3,7 @@
  */
 package org.leetcode.tree.easy.solutions;
 
-import org.leetcode.bst.medium.solutions.TreeNode;
+import org.leetcode.common.TreeNode;
 
 /**
  * @author divyesh_surana

@@ -6,7 +6,7 @@ package org.leetcode.tree.medium.solutions;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.leetcode.bst.medium.solutions.TreeNode;
+import org.leetcode.common.TreeNode;
 
 /**
  * @author divyesh_surana

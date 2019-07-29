@@ -3,6 +3,8 @@
  */
 package org.leetcode.bst.medium.solutions;
 
+import org.leetcode.common.TreeNode;
+
 /**
  * @author divyeshsurana
  *
