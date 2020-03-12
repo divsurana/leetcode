@@ -14,9 +14,8 @@ public class _814_1 {
 		if (root != null) {
 			root.left = pruneTree(root.left);
 			root.right = pruneTree(root.right);
-			if (root.left == null && root.right == null) {
-				if (root.val == 0)
-					return null;
+			if (root.val == 0 && root.left == null && root.right == null) {
+				root = null;
 			}
 		}
 		return root;
