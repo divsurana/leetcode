@@ -7,7 +7,7 @@ package org.leetcode.math.easy.solutions;
  * @author divyeshsurana
  *
  */
-public class _7_1 {
+public class ReverseInteger {
 	public int reverse(int x) {
 		int reverse = 0;
 
@@ -21,5 +21,18 @@ public class _7_1 {
 		}
 
 		return reverse;
+	}
+
+	public int reverse_2(int x) {
+		long div = x / 10;
+		long out = x % 10;
+
+		while (div != 0) {
+			out *= 10;
+			out += div % 10;
+			div = div / 10;
+		}
+
+		return Integer.MIN_VALUE < out && out < Integer.MAX_VALUE ? (int) out : 0;
 	}
 }
