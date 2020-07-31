@@ -12,7 +12,7 @@ import org.leetcode.linkedlist.medium.solutions.ListNode;
  *
  */
 public class ReverseLinkedList {
-	public ListNode reverseList(ListNode head) {
+	public ListNode reverseList_v1(ListNode head) {
 		Stack<ListNode> stack = new Stack<>();
 		ListNode node = head;
 
@@ -28,5 +28,18 @@ public class ReverseLinkedList {
 		}
 
 		return node;
+	}
+
+	public ListNode reverseList_v2(ListNode head) {
+		ListNode prev = null;
+
+		while (head != null) {
+			ListNode next = head.next;
+			head.next = prev;
+			prev = head;
+			head = next;
+		}
+
+		return prev;
 	}
 }
