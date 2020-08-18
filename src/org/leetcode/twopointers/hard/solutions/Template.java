@@ -8,16 +8,18 @@ package org.leetcode.twopointers.hard.solutions;
  *
  */
 public class Template {
-	String minWindow(String s, String t) {
+	public String minWindow(String s, String t) {
 		int[] map = new int[128];
 		for (char c : t.toCharArray()) {
 			map[c]++;
 		}
 		int counter = t.length(), begin = 0, end = 0, d = Integer.MAX_VALUE, head = 0;
-		for (; end < s.length(); map[s.charAt(end)]++, end++) {
+		while (end < s.length()) {
 			if (map[s.charAt(end)] > 0) {
 				counter--;
 			}
+			map[s.charAt(end)]--;
+			end++;
 			for (; counter == 0; map[s.charAt(begin)]++, begin++) {
 				if (end - begin < d) {
 					d = end - begin;
@@ -29,7 +31,7 @@ public class Template {
 			}
 		}
 
-		return d == Integer.MAX_VALUE ? "" : s.substring(head, d);
+		return d == Integer.MAX_VALUE ? "" : s.substring(head, head + d);
 	}
 
 	int findSubstring(String s) {
@@ -43,9 +45,11 @@ public class Template {
 			break;
 		}
 
-		for (; end < s.length(); map[s.charAt(end)]--, end++) {
+		while (end < s.length()) {
 
 			// if(map[s.charAt(end)] ?){ /* modify counter here */ }
+			map[s.charAt(end)]--;
+			end++;
 
 			for (boolean counter_condition = false; counter_condition; map[s.charAt(begin)]++, begin++) {
 
@@ -67,10 +71,12 @@ public class Template {
 	int lengthOfLongestSubstringTwoDistinct(String s) {
 		int[] map = new int[128];
 		int counter = 0, begin = 0, end = 0, d = 0;
-		for (; end < s.length(); map[s.charAt(end)]++, end++) {
+		for (; end < s.length();) {
 			if (map[s.charAt(end)] == 0) {
 				counter++;
 			}
+			map[s.charAt(end)]++;
+			end++;
 			for (; counter > 2; map[s.charAt(begin)]++, begin++) {
 				if (map[s.charAt(begin)] == 1) {
 					counter--;
@@ -87,10 +93,12 @@ public class Template {
 	int lengthOfLongestSubstring(String s) {
 		int[] map = new int[128];
 		int counter = 0, begin = 0, end = 0, d = 0;
-		for (; end < s.length(); map[s.charAt(end)]++, end++) {
+		for (; end < s.length();) {
 			if (map[s.charAt(end)] > 0) {
 				counter++;
 			}
+			map[s.charAt(end)]++;
+			end++;
 			for (; counter > 0; map[s.charAt(begin)]--, begin++) {
 				if (map[s.charAt(begin)] > 1) {
 					counter--;

@@ -11,9 +11,9 @@ import java.util.List;
  *
  */
 public class LetterCombinationsOfAPhoneNumber {
-	public List<String> letterCombinations(String digits) {
+	public List<String> letterCombinations_v1(String digits) {
 		List<String> combinations = new ArrayList<>();
-		if (digits == null || digits.length() == 0) {
+		if (digits.length() > 0) {
 			backtrack(combinations, digits, 0, "");
 		}
 		return combinations;
@@ -72,6 +72,30 @@ public class LetterCombinationsOfAPhoneNumber {
 		default:
 			backtrack(combinations, digits, index + 1, combination);
 			break;
+		}
+	}
+
+	char[][] mapping = { {}, {}, { 'a', 'b', 'c' }, { 'd', 'e', 'f' }, { 'g', 'h', 'i' }, { 'j', 'k', 'l' },
+			{ 'm', 'n', 'o' }, { 'p', 'q', 'r', 's' }, { 't', 'u', 'v' }, { 'w', 'x', 'y', 'z' } };
+
+	public List<String> letterCombinations_v2(String digits) {
+		List<String> combinations = new ArrayList<>();
+		if (digits.length() > 0) {
+			helper(combinations, digits, new StringBuffer());
+		}
+		return combinations;
+	}
+
+	private void helper(List<String> combinations, String digits, StringBuffer combination) {
+		if (combination.length() == digits.length()) {
+			combinations.add(combination.toString());
+			return;
+		}
+		int index = combination.length();
+		int num = Character.getNumericValue(digits.charAt(index));
+		for (char c : mapping[num]) {
+			helper(combinations, digits, combination.append(c));
+			combination.deleteCharAt(combination.length() - 1);
 		}
 	}
 }

@@ -12,7 +12,7 @@ import java.util.List;
  *
  */
 public class MergeIntervals {
-	public int[][] merge(int[][] intervals) {
+	public int[][] merge_v1(int[][] intervals) {
 		if (intervals.length == 0) {
 			return new int[0][];
 		}
@@ -37,5 +37,29 @@ public class MergeIntervals {
 		}
 
 		return merge.toArray(new int[merge.size()][]);
+	}
+
+	public int[][] merge_v2(int[][] intervals) {
+		int[] starts = new int[intervals.length];
+		int[] ends = new int[intervals.length];
+
+		for (int i = 0; i < intervals.length; i++) {
+			int[] interval = intervals[i];
+			starts[i] = interval[0];
+			ends[i] = interval[1];
+		}
+
+		Arrays.sort(starts);
+		Arrays.sort(ends);
+
+		List<int[]> result = new ArrayList<>();
+		for (int start = 0, end = 0; end < intervals.length; end++) {
+			if (end == intervals.length - 1 || starts[end + 1] > ends[end]) {
+				result.add(new int[] { starts[start], ends[end] });
+				start = end + 1;
+			}
+		}
+
+		return result.toArray(new int[result.size()][]);
 	}
 }
