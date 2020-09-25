@@ -62,4 +62,21 @@ public class LongestSubstringWithUniqueCharacters {
 		}
 		return longestLength;
 	}
+
+	// Fastest due to the use of a static int array
+	public int lengthOfLongestSubstring_v4(String s) {
+		int longestLength = 0;
+		int currLength = 0;
+		int[] arr = new int[95];
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+
+			currLength = Math.min(i - arr[c - ' '] + 1, currLength + 1);
+			arr[c - ' '] = i + 1; // Adding the position by adding 1 as by
+									// default every element will be 0 which
+									// should correspond to -1 instead
+			longestLength = Math.max(currLength, longestLength);
+		}
+		return longestLength;
+	}
 }

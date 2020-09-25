@@ -53,27 +53,49 @@ public class Permutations {
 
 	public List<List<Integer>> permute_v2(int[] nums) {
 		List<List<Integer>> list = new ArrayList<>();
-		for (int i = 0; i < nums.length; i++) {
-			List<List<Integer>> combinations = new ArrayList<>();
-			int[] array1 = Arrays.copyOfRange(nums, 0, i);
-			int[] array2 = Arrays.copyOfRange(nums, i + 1, nums.length);
-			int aLen = array1.length;
-			int bLen = array2.length;
-			int[] result = new int[aLen + bLen];
-			System.arraycopy(array1, 0, result, 0, aLen);
-			System.arraycopy(array2, 0, result, aLen, bLen);
+		if (nums.length == 1) {
+			list.add(new ArrayList<>(Arrays.asList(nums[0])));
+		} else {
+			for (int i = 0; i < nums.length; i++) {
+				List<List<Integer>> combinations = new ArrayList<>();
 
-			if (result.length == 0) {
-				combinations.add(new LinkedList<Integer>());
-			} else {
+				int[] array1 = Arrays.copyOfRange(nums, 0, i);
+				int[] array2 = Arrays.copyOfRange(nums, i + 1, nums.length);
+				int[] result = new int[nums.length - 1];
+				System.arraycopy(array1, 0, result, 0, i);
+				System.arraycopy(array2, 0, result, i, nums.length - 1 - i);
 				combinations = permute_v2(result);
-			}
 
-			for (List<Integer> combination : combinations) {
-				combination.add(nums[i]);
+				for (List<Integer> combination : combinations) {
+					combination.add(nums[i]);
+				}
+				list.addAll(combinations);
 			}
-			list.addAll(combinations);
 		}
+
 		return list;
+	}
+
+	public List<List<Integer>> permute_v3(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		backtrack(result, new LinkedList<Integer>(), nums, new boolean[nums.length]);
+		return result;
+	}
+
+	private void backtrack(List<List<Integer>> permutations, LinkedList<Integer> curr, int[] nums, boolean[] used) {
+		if (curr.size() == nums.length) {
+			// reinitialize list to update reference
+			permutations.add(new ArrayList<>(curr));
+			return;
+		}
+		for (int i = 0; i < nums.length; i++) {
+			if (!used[i]) {
+				used[i] = true;
+				curr.addLast(nums[i]);
+				backtrack(permutations, curr, nums, used);
+				curr.removeLast();
+				used[i] = false;
+			}
+		}
 	}
 }
