@@ -8,7 +8,7 @@ package org.leetcode.dfs.medium.solutions;
  *
  */
 public class NumberOfIslands {
-	public int numIslands(char[][] grid) {
+	public int numIslands_1(char[][] grid) {
 		if (grid.length == 0) {
 			return 0;
 		}
@@ -37,4 +37,29 @@ public class NumberOfIslands {
 		floodFill(grid, i, j + 1, n, m); // or east
 		floodFill(grid, i, j - 1, n, m); // or west
 	}
+	
+	public int numIslands_2(char[][] grid) {
+        int num = 0;
+        
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
+                    floodFill(grid, i, j);
+                    num++;
+                }
+            }
+        }
+        
+        return num;
+    }
+    
+    private void floodFill(char[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] == '0') return;
+        
+        grid[i][j] = '0';
+        floodFill(grid, i + 1, j);
+        floodFill(grid, i, j + 1);
+        floodFill(grid, i - 1, j);
+        floodFill(grid, i, j - 1);
+    }
 }
