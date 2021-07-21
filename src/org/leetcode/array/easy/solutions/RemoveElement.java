@@ -36,16 +36,18 @@ public class RemoveElement {
 		nums[i2] = swap;
 	}
 
-	public int removeElement_v2(int[] A, int elem) {
-		int m = 0;
-		for (int i = 0; i < A.length; i++) {
+	public int removeElement_v2(int[] nums, int val) {
+		int slowIndex = 0, fastIndex = 0;
 
-			if (A[i] != elem) {
-				A[m] = A[i];
-				m++;
+		// Can be done using for loop too
+		while (fastIndex < nums.length) {
+			if (nums[fastIndex] == val) {
+				fastIndex++;
+			} else {
+				nums[slowIndex++] = nums[fastIndex++];
 			}
 		}
 
-		return m;
+		return slowIndex;
 	}
 }

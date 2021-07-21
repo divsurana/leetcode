@@ -11,7 +11,7 @@ import java.util.Set;
  *
  */
 public class StringToInteger {
-	public int myAtoi(String str) {
+	public int myAtoi_v1(String str) {
 		Set<Character> set = initializeSet();
 		int result = 0;
 		str = str.trim();
@@ -54,5 +54,34 @@ public class StringToInteger {
 		set.add('8');
 		set.add('9');
 		return set;
+	}
+
+	public int myAtoi_v2(String str) {
+		int result = 0;
+		str = str.trim();
+		int i = 0, multiplier = 1;
+
+		if (str.length() > 0) {
+			if (str.charAt(0) == '+') {
+				i++;
+			} else if (str.charAt(0) == '-') {
+				multiplier = -1;
+				i++;
+			}
+		}
+
+		for (; i < str.length(); i++) {
+			char c = str.charAt(i);
+			if (c < '0' || c > '9') {
+				break;
+			}
+			int newResult = result * 10 + c - '0';
+			if (newResult / 10 != result) {
+				return multiplier == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+			}
+			result = newResult;
+		}
+
+		return multiplier * result;
 	}
 }

@@ -4,6 +4,7 @@
 package org.leetcode.array.medium.solutions;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -166,6 +167,30 @@ public class SpiralMatrix {
 			d = (d + 1) % 4;
 			i += direction[d][0];
 			j += direction[d][1];
+		}
+
+		return result;
+	}
+
+	public List<Integer> spiralOrder_v4(int[][] matrix) {
+		List<Integer> result = new LinkedList<>();
+		int[][] directions = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+		int d = 0, i = 0, j = 0, m = matrix.length, n = matrix[0].length;
+		int count = m * n;
+
+		while (count > 0) {
+			result.add(matrix[i][j]);
+			matrix[i][j] = 0;
+			i += directions[d][0];
+			j += directions[d][1];
+			if (i < 0 || j < 0 || i >= m || j >= n || matrix[i][j] == 0) {
+				i -= directions[d][0];
+				j -= directions[d][1];
+				d = (d + 1) % 4;
+				i += directions[d][0];
+				j += directions[d][1];
+			}
+			count--;
 		}
 
 		return result;

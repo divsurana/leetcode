@@ -8,7 +8,7 @@ package org.leetcode.array.easy.solutions;
  *
  */
 public class RemoveDuplicatesFromSortedArray {
-	public int removeDuplicates(int[] nums) {
+	public int removeDuplicates_v1(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 0;
 		}
@@ -24,5 +24,22 @@ public class RemoveDuplicatesFromSortedArray {
 		}
 
 		return index;
+	}
+
+	public int removeDuplicates_v2(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+		int slowIndex = 0, fastIndex = 1;
+
+		while (fastIndex < nums.length) {
+			if (nums[slowIndex] == nums[fastIndex]) {
+				fastIndex++;
+			} else {
+				nums[++slowIndex] = nums[fastIndex++];
+			}
+		}
+
+		return slowIndex + 1;
 	}
 }
