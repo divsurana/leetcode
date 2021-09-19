@@ -4,6 +4,7 @@
 package org.leetcode.design.medium.solutions;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -11,12 +12,35 @@ import java.util.Map;
  * @author divyeshsurana
  *
  */
-public class LRUCache {
+class LRUCache extends LinkedHashMap<Integer, Integer> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4243386866680446175L;
+	private int capacity;
+
+	public LRUCache(int capacity) {
+		super(capacity, 0.75f, true);
+		this.capacity = capacity;
+	}
+
+	public int get(int key) {
+		return getOrDefault(key, -1);
+	}
+
+	@Override
+	protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+		return size() > capacity;
+	}
+}
+
+class LRUCache_v1 {
 	Map<Integer, Integer> cache;
 	LinkedList<Integer> keys;
 	int capacity;
 
-	public LRUCache(int capacity) {
+	public LRUCache_v1(int capacity) {
 		this.cache = new HashMap<>();
 		this.keys = new LinkedList<>();
 		this.capacity = capacity;

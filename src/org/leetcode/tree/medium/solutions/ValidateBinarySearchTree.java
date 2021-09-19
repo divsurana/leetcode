@@ -13,7 +13,7 @@ import org.leetcode.common.TreeNode;
  *
  */
 public class ValidateBinarySearchTree {
-	public boolean isValidBST(TreeNode root) {
+	public boolean isValidBST_v1(TreeNode root) {
 		if (root == null) {
 			return true;
 		}
@@ -41,5 +41,17 @@ public class ValidateBinarySearchTree {
 			prev = current;
 		}
 		return true;
+	}
+
+	public boolean isValidBST_v2(TreeNode root) {
+		return isValidBST(root, null, null);
+	}
+
+	private boolean isValidBST(TreeNode root, Integer low, Integer high) {
+		if (root == null) {
+			return true;
+		}
+		return (low == null || low < root.val) && (high == null || root.val < high)
+				&& isValidBST(root.left, low, root.val) && isValidBST(root.right, root.val, high);
 	}
 }

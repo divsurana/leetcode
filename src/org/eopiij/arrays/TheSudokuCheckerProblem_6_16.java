@@ -48,9 +48,8 @@ public class TheSudokuCheckerProblem_6_16 {
 					// generate the actual number, '5' - '1' = 4
 					if (tracker[board[i][j] - '1']) {
 						return true;
-					} else {
-						tracker[board[i][j] - '1'] = true;
 					}
+					tracker[board[i][j] - '1'] = true;
 				}
 			}
 		}

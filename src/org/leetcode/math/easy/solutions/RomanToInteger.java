@@ -11,8 +11,20 @@ import java.util.Map;
  *
  */
 public class RomanToInteger {
-	public int romanToInt(String s) {
-		Map<Character, Integer> values = initializeValues();
+	Map<Character, Integer> values = new HashMap<Character, Integer>() {
+
+		{
+			put('I', 1);
+			put('V', 5);
+			put('X', 10);
+			put('L', 50);
+			put('C', 100);
+			put('D', 500);
+			put('M', 1000);
+		}
+	};
+
+	public int romanToInt_v1(String s) {
 		int result = 0;
 
 		for (int i = 0; i < s.length(); i++) {
@@ -55,17 +67,17 @@ public class RomanToInteger {
 		return result;
 	}
 
-	private Map<Character, Integer> initializeValues() {
-		Map<Character, Integer> values = new HashMap<>();
-
-		values.put('I', 1);
-		values.put('V', 5);
-		values.put('X', 10);
-		values.put('L', 50);
-		values.put('C', 100);
-		values.put('D', 500);
-		values.put('M', 1000);
-
-		return values;
+	public int romanToInt_v2(String s) {
+		int total = 0;
+		for (int i = 0; i + 1 < s.length(); i++) {
+			char c = s.charAt(i);
+			if (values.get(c) >= values.get(s.charAt(i + 1))) {
+				total += values.get(c);
+			} else {
+				total -= values.get(c);
+			}
+		}
+		total += values.get(s.charAt(s.length() - 1));
+		return total;
 	}
 }

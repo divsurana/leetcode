@@ -15,6 +15,11 @@ public class ListNode {
 	public ListNode(int x) {
 		val = x;
 	}
+
+	public ListNode(int x, ListNode child) {
+		val = x;
+		next = child;
+	}
 }
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode

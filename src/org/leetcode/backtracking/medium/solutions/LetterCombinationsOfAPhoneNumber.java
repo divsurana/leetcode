@@ -98,4 +98,23 @@ public class LetterCombinationsOfAPhoneNumber {
 			combination.deleteCharAt(combination.length() - 1);
 		}
 	}
+
+	public List<String> letterCombinations_v3(String digits) {
+		List<String> result = new ArrayList<>();
+		if (!digits.isEmpty()) {
+			helper(result, 0, digits, new char[digits.length()]);
+		}
+		return result;
+	}
+
+	public void helper(List<String> result, int index, String digits, char[] buffer) {
+		for (char c : mapping[Character.getNumericValue(digits.charAt(index))]) {
+			buffer[index] = c;
+			if (index == digits.length() - 1) {
+				result.add(String.valueOf(buffer));
+			} else {
+				helper(result, index + 1, digits, buffer);
+			}
+		}
+	}
 }
