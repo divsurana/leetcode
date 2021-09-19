@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eopiij.dynamicprogramming;
+package org.eoplij.dynamicprogramming;
 
 import java.util.HashSet;
 import java.util.Set;

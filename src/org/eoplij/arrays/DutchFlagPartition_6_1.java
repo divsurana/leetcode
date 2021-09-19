@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eopiij.arrays;
+package org.eoplij.arrays;
 
 import org.leetcode.common.Utils;
 

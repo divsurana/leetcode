@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eopiij.recursion;
+package org.eoplij.recursion;
 
 import java.util.ArrayList;
 import java.util.List;

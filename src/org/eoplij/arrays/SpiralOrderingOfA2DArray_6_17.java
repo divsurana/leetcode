@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eopiij.arrays;
+package org.eoplij.arrays;
 
 import java.util.LinkedList;
 import java.util.List;
