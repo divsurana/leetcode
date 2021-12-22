@@ -3,6 +3,8 @@
  */
 package org.leetcode.linkedlist.hard.solutions;
 
+import java.util.PriorityQueue;
+
 import org.leetcode.linkedlist.medium.solutions.ListNode;
 
 /**
@@ -13,8 +15,8 @@ public class MergeKSortedLists {
 	public ListNode mergeKLists(ListNode[] lists) {
 		ListNode merge = null;
 
-		for (int i = 0; i < lists.length; i++) {
-			merge = merge(merge, lists[i]);
+		for (ListNode list : lists) {
+			merge = merge(merge, list);
 		}
 
 		return merge;
@@ -35,6 +37,27 @@ public class MergeKSortedLists {
 			node = node.next;
 		}
 		node.next = l1 == null ? l2 : l1;
+
+		return pseudoHead.next;
+	}
+
+	public ListNode mergeKLists_v2(ListNode[] lists) {
+		PriorityQueue<ListNode> heap = new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
+		for (ListNode node : lists) {
+			if (node != null) {
+				heap.offer(node);
+			}
+		}
+		ListNode pseudoHead = new ListNode();
+		ListNode node = pseudoHead;
+
+		while (!heap.isEmpty()) {
+			node.next = heap.poll();
+			node = node.next;
+			if (node.next != null) {
+				heap.offer(node.next);
+			}
+		}
 
 		return pseudoHead.next;
 	}

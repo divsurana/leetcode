@@ -58,6 +58,7 @@ public class SearchSortedArrayForFirstAndLastOccurrence_12_1 {
 		return idx;
 	}
 
+	// Not optimal
 	public int[] searchRange_v2(int[] nums, int target) {
 		int l = 0, h = nums.length - 1, m = -1;
 
